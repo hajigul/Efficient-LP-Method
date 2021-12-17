@@ -1,0 +1,14 @@
+function [proposed_method_scores] = proposed_method(A,beta_val)
+
+% proposed_method - Compute similarity score matrix
+% A - is the adjacency matrix of the network
+% beta_val - beta is damping parameter value
+% after receiving these requirments, the proposed method calculated as hole similarity matrix and provide final accuracy 
+% output proposed_method_scores returns similarity score between all pairs. The value is computed using all nodes.
+
+
+D = diag(sum(A));
+L = 1./log(sum(A)+1);
+proposed_method_scores = (inv(eye(size(A)).*(A)^2+(beta_val).*L));
+end
+proposed_method_scores = proposed_method_scores  + proposed_method_scores';
